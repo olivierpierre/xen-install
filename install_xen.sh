@@ -1,13 +1,16 @@
 #!/bin/bash
 set -euf -o pipefail
 
-GIT_XEN="git://xenbits.xen.org/xen"
+# Git branch / tag to checkout:
 GIT_XEN_CO="RELEASE-4.7.0"
+# Xen compile options - these env variables will be set before calling make
+# Here you can put for example:
 # XEN_COMPILE_OPTS="lock_profile=y perfc=y perfc_arrays=y"
-XEN_COMPILE_OPTS=""
+XEN_COMPILE_OPTS="lock_profile=y perfc=y perfc_arrays=y"
+# Xen git repository:
+GIT_XEN="git://xenbits.xen.org/xen"
 
 CPUS=`cat /proc/cpuinfo | grep processor | wc -l`
-
 
 # Prerequisites
 sudo apt-get update && sudo apt-get upgrade -y
