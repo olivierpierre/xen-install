@@ -3,10 +3,10 @@ set -euf -o pipefail
 
 # Git branch / tag to checkout:
 GIT_XEN_CO="RELEASE-4.7.0"
-# Xen compile options - these env variables will be set before calling make
-# Here you can put for example:
-# XEN_COMPILE_OPTS="lock_profile=y perfc=y perfc_arrays=y"
-XEN_COMPILE_OPTS="lock_profile=y perfc=y perfc_arrays=y"
+# Xen compile options
+LOCK_PROF="no"
+PERFC="no"
+PERFC_ARRAYS="no"
 # Xen git repository:
 GIT_XEN="git://xenbits.xen.org/xen"
 
@@ -25,8 +25,20 @@ cd xen && git checkout $GIT_XEN_CO
 #echo "" > tools/firmware/etherboot/patches/series
 # End hack
 
+if [ "$LOCK_PROF" == "yes" ]; then
+    export lock_profile=y
+fi
+
+if [ "$PERFC" == "yes" ]; then
+    export perfc=y
+fi
+
+if [ "$PERFC_ARRAYS" == "yes" ]; then
+    export perfc_arrays=y
+fi
+
 ./configure
-$XEN_COMPILE_OPTS make -j$CPUS install
+make -j$CPUS install
 
 sudo ldconfig
 sudo update-rc.d xencommons defaults 19 18
