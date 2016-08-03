@@ -41,8 +41,8 @@ if [ "$PERFC_ARRAYS" == "yes" ]; then
     export perfc_arrays=y
 fi
 
-./configure
-make -j$CPUS install
+cd xen && ./configure && cd -
+make -j$CPUS -C xen install
 
 sudo ldconfig
 sudo update-rc.d xencommons defaults 19 18
