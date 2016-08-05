@@ -1,9 +1,13 @@
 #!/bin/bash
 
-INIT_SCRIPT=/etc/init.d/xen_bridge
+# Primary network interface
 IFACE=eth0
+# Name of the network bridge to create
 BR_NAME=xenbr0
+# IP of the host - this machine - on the bridge
 IP=10.0.0.1
+# Where to put the init script
+INIT_SCRIPT=/etc/init.d/xen_bridge
 
 me=`whoami`
 if [ ! "$me" == "root" ]; then
