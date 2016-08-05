@@ -1,8 +1,10 @@
 #!/bin/bash
 set -euf -o pipefail
 
-XTOOLS_GIT="https://github.com/xen-tools/xen-tools.git"
+# Git branch / tag to checkout before install
 XTOOLS_CO="release-4.6.2"
+# Git repo of xen-tools
+XTOOLS_GIT="https://github.com/xen-tools/xen-tools.git"
 
 # Prerequisites
 sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y perl debootstrap git liblog-message-perl bridge-utils
