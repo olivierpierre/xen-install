@@ -15,3 +15,5 @@ git clone $XTOOLS_GIT
 cd xen-tools && git checkout $XTOOLS_CO && cd -
 
 sudo make install -C xen-tools
+
+echo "Installation done. If you plan to have a large number of loop devices, please add \'max_loop=512\' to linux boot parameters."
